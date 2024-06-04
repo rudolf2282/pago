@@ -59,32 +59,9 @@ $conn->close();
             background-color: #f8f9fa;
         }
 
-        .sidebar {
-            height: 100vh;
-            background-color: #343a40;
-            color: white;
-            padding-top: 20px;
-        }
-
-        .sidebar .nav-link {
-            color: white;
-        }
-
-        .sidebar .nav-link.active {
-            background-color: #007bff;
-        }
-
-        .sidebar .nav-link:hover {
+        .navbar-nav .nav-link:hover {
             background-color: #0056b3;
-        }
-
-        .content {
-            margin-left: 250px;
-            padding: 20px;
-        }
-
-        .navbar {
-            margin-left: 250px;
+            color: white;
         }
 
         .form-container {
@@ -99,86 +76,80 @@ $conn->close();
 </head>
 
 <body>
-    <div class="d-flex">
-        <nav class="sidebar d-flex flex-column p-3">
-            <h4 class="text-center">Admin Dashboard</h4>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="dashboard.php"><i class="fas fa-home"></i> Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="karyawan.php"><i class="fas fa-users"></i> Karyawan</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="transaksi.php"><i class="fas fa-exchange-alt"></i> Transaksi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                </li>
-            </ul>
-        </nav>
-
-        <div class="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <div class="collapse navbar-collapse">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="#">Hi, <?php echo $_SESSION['user_name']; ?></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
-            <div class="container mt-4 form-container">
-                <h1 class="mb-4">Tambah Karyawan</h1>
-                <form action="add_karyawan.php" method="post">
-                    <div class="form-group mb-3">
-                        <label for="NIK">NIK:</label>
-                        <input type="text" name="NIK" class="form-control" value="<?= $NIK ?>" readonly>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="Nama">Nama:</label>
-                        <input type="text" name="Nama" class="form-control" required>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="Id_Jabatan">Jabatan:</label>
-                        <select name="Id_Jabatan" id="Id_Jabatan" class="form-control" required>
-                            <option value="">Pilih Jabatan</option>
-                            <?php while ($jabatan = $jabatans->fetch_assoc()): ?>
-                                <option value="<?= $jabatan['id']; ?>"><?= $jabatan['Nama_Jabatan']; ?></option>
-                            <?php endwhile; ?>
-                        </select>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="Gaji_Pokok">Gaji Pokok:</label>
-                        <input type="text" name="Gaji_Pokok" id="Gaji_Pokok" class="form-control" readonly>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="Tunjangan_Jabatan">Tunjangan Jabatan:</label>
-                        <input type="text" name="Tunjangan_Jabatan" id="Tunjangan_Jabatan" class="form-control" readonly>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="Status">Status:</label>
-                        <select name="Status" id="Status" class="form-control" required>
-                            <option value="Kawin">Kawin</option>
-                            <option value="Belum Kawin">Belum Kawin</option>
-                        </select>
-                    </div>
-                    <div class="form-group mb-3" id="Jumlah_Anak_Group">
-                        <label for="Jumlah_Anak">Jumlah Anak:</label>
-                        <input type="number" name="Jumlah_Anak" id="Jumlah_Anak" class="form-control">
-                    </div>
-                    <div class="form-group mb-3" id="Tunjangan_Anak_Group">
-                        <label for="Tunjangan_Anak">Tunjangan Anak:</label>
-                        <input type="text" name="Tunjangan_Anak" id="Tunjangan_Anak" class="form-control" readonly>
-                    </div>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
-                    <a href="karyawan.php" class="btn btn-secondary"><i class="fas fa-times"></i> Close</a>
-                </form>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Admin Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.php"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="karyawan.php"><i class="fas fa-users"></i> Karyawan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="transaksi.php"><i class="fas fa-exchange-alt"></i> Transaksi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    Hi, <?php echo $_SESSION['user_name']; ?>
+                </span>
             </div>
         </div>
+    </nav>
+
+    <div class="container mt-4 form-container">
+        <h1 class="mb-4">Tambah Karyawan</h1>
+        <form action="add_karyawan.php" method="post">
+            <div class="form-group mb-3">
+                <label for="NIK">NIK:</label>
+                <input type="text" name="NIK" class="form-control" value="<?= $NIK ?>" readonly>
+            </div>
+            <div class="form-group mb-3">
+                <label for="Nama">Nama:</label>
+                <input type="text" name="Nama" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="Id_Jabatan">Jabatan:</label>
+                <select name="Id_Jabatan" id="Id_Jabatan" class="form-control" required>
+                    <option value="">Pilih Jabatan</option>
+                    <?php while ($jabatan = $jabatans->fetch_assoc()): ?>
+                        <option value="<?= $jabatan['id']; ?>"><?= $jabatan['Nama_Jabatan']; ?></option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="Gaji_Pokok">Gaji Pokok:</label>
+                <input type="text" name="Gaji_Pokok" id="Gaji_Pokok" class="form-control" readonly>
+            </div>
+            <div class="form-group mb-3">
+                <label for="Tunjangan_Jabatan">Tunjangan Jabatan:</label>
+                <input type="text" name="Tunjangan_Jabatan" id="Tunjangan_Jabatan" class="form-control" readonly>
+            </div>
+            <div class="form-group mb-3">
+                <label for="Status">Status:</label>
+                <select name="Status" id="Status" class="form-control" required>
+                    <option value="Kawin">Kawin</option>
+                    <option value="Belum Kawin">Belum Kawin</option>
+                </select>
+            </div>
+            <div class="form-group mb-3" id="Jumlah_Anak_Group">
+                <label for="Jumlah_Anak">Jumlah Anak:</label>
+                <input type="number" name="Jumlah_Anak" id="Jumlah_Anak" class="form-control">
+            </div>
+            <div class="form-group mb-3" id="Tunjangan_Anak_Group">
+                <label for="Tunjangan_Anak">Tunjangan Anak:</label>
+                <input type="text" name="Tunjangan_Anak" id="Tunjangan_Anak" class="form-control" readonly>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+            <a href="karyawan.php" class="btn btn-secondary"><i class="fas fa-times"></i> Close</a>
+        </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
